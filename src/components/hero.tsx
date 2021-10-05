@@ -1,11 +1,13 @@
-import { Stack } from "@chakra-ui/react";
+import { Stack, Flex } from "@chakra-ui/react";
 import { Form } from "./form";
 
 export const Hero = () => {
   return (
     <>
       <Stack w="100%" h="100vh" backgroundColor="blue.600">
-        <Form />
+        <Flex justifyContent="center">
+          <Form />
+        </Flex>
       </Stack>
     </>
   );
