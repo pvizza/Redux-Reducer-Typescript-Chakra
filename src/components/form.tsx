@@ -9,52 +9,72 @@ import {
   Stack,
   Center,
   Button,
+  InputLeftElement,
+  InputGroup,
 } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
-import {Contacts} from './contacts'
+import { InfoIcon } from "@chakra-ui/icons";
+import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
 
 interface Props {
-  callback: (data:any) => void
+  callback: (data: any) => void;
 }
 const initialState = {
-  name:'',
-  last:''
-
-}
-export const Form = ({callback}:Props) => {
+  name: "",
+  last: "",
+};
+export const Form = ({ callback }: Props) => {
   const [inputValue, setInputValue] = useState(initialState);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
-    const newValues = {...inputValue, [name]: value };
+    const newValues = { ...inputValue, [name]: value };
     setInputValue(newValues);
   };
 
   const handleClick = () => {
-    if (initialState.name !== '' && initialState.last !== '') {
-    setInputValue(inputValue);
-    callback(inputValue)
-    setInputValue(initialState)
-    
+    if (inputValue.name !== "" && inputValue.last !== "") {
+      setInputValue(inputValue);
+      callback(inputValue);
+      setInputValue(initialState);
     }
-    
   };
 
-  
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(1);
+  };
 
   return (
     <>
-      <FormControl w="50%" id="first-name" isRequired>
-        <Flex flexDirection="column">
-          <FormLabel >First name</FormLabel>
-          <Input value={inputValue.name} name="name" onChange={handleChange} placeholder="First name" />
-          <FormLabel>Last name</FormLabel>
-          <Input value={inputValue.last} name="last" onChange={handleChange} placeholder="First name" />
-          <Button onClick={handleClick} backgroundColor="blue.300" p={5} mt="2">
+      <form onSubmit={handleSubmit}>
+        <Stack mt={4} spacing={3}>
+          <FormControl id="first-name">
+            <InputGroup>
+              <InputLeftElement children={<InfoIcon color="blue.600" />} />
+              <Input
+                value={inputValue.name}
+                name="name"
+                onChange={handleChange}
+                placeholder="First name"
+              />
+            </InputGroup>
+          </FormControl>
+          <FormControl id="last-name">
+            <InputGroup>
+              <InputLeftElement children={<InfoIcon color="blue.600" />} />
+              <Input
+                value={inputValue.last}
+                name="last"
+                onChange={handleChange}
+                placeholder="Last name"
+              />
+            </InputGroup>
+          </FormControl>
+          <Button type="submit" colorScheme="blue" onClick={handleClick}>
             Add
           </Button>
-        </Flex>
-      </FormControl>
+        </Stack>
+      </form>
     </>
   );
 };
