@@ -17,7 +17,6 @@ interface Props {
 }
 
 export const Contacts = ({ contacts, deleteContact }: Props) => {
-  console.log(contacts);
   return (
     <>
       <Table variant="striped" colorScheme="telegram">

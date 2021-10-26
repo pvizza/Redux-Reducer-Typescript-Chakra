@@ -13,7 +13,7 @@ import {
   InputGroup,
 } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
-import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 interface Props {
   callback: (data: any) => void;
@@ -24,6 +24,7 @@ const initialState = {
 };
 export const Form = ({ callback }: Props) => {
   const [inputValue, setInputValue] = useState(initialState);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
@@ -33,12 +34,12 @@ export const Form = ({ callback }: Props) => {
 
   const handleClick = () => {
     if (inputValue.name !== "" && inputValue.last !== "") {
-      setInputValue(inputValue);
       callback(inputValue);
       setInputValue(initialState);
     }
   };
 
+  // validation function, to-do
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(1);

@@ -2,14 +2,16 @@ import { Stack, Flex } from "@chakra-ui/react";
 import { Form } from "./form";
 import { Contacts } from "./contacts";
 import { Person } from "../interfaces/Person";
-import { useState } from "react";
+import { useState, useReducer } from "react";
+import { ContactsReducer } from "../reducers/ContactsReducer";
 
 export const Hero = () => {
   const [inputValue, setInputValue] = useState<Person[]>([]);
 
-  const handleContact = (data: Person) =>
+  const handleContact = (data: Person) => {
     setInputValue([...inputValue, { ...data, id: getTimeForId() }]);
-
+    console.log(inputValue);
+  };
   const getTimeForId = (): number => new Date().getTime();
 
   const deleteContact = (id: number) =>
