@@ -14,16 +14,21 @@ import {
 } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { action } from "../store/store";
 
-interface Props {
-  callback: (data: any) => void;
-}
+// interface Props {
+//   callback: (data: any) => void;
+// }
 const initialState = {
   name: "",
   last: "",
 };
-export const Form = ({ callback }: Props) => {
+
+export const Form = (/*{ callback }: Props*/) => {
   const [inputValue, setInputValue] = useState(initialState);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -34,7 +39,7 @@ export const Form = ({ callback }: Props) => {
 
   const handleClick = () => {
     if (inputValue.name !== "" && inputValue.last !== "") {
-      callback(inputValue);
+      dispatch(action(inputValue));
       setInputValue(initialState);
     }
   };

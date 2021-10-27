@@ -1,12 +1,11 @@
 import { Person } from "../interfaces/Person";
 
-type initialState = "";
+const initialState = {};
 type actionType = { type: string; payload: {} };
 
-export const ContactsReducer = (state: any, action: actionType) => {
+export const ContactsReducer = (state = initialState, action: actionType) => {
   switch (action.type) {
     case "add":
-      console.log(state);
       return { ...state, inputValue: action.payload };
 
     default:

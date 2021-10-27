@@ -1,28 +1,20 @@
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunkMiddleware from "redux-thunk";
 
-const initialState = {
-  counter: 10,
+import { ContactsReducer } from "../reducers/ContactsReducer";
+
+const initialState = {};
+
+export const action = (inputValue) => (dispatch) => {
+  return dispatch({ type: "add", payload: inputValue });
 };
 
-const reducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case "ACTION":
-      return {
-        ...state,
-        counter: state.counter + 1,
-      };
-    default:
-      return state;
-  }
-};
-
-export const action = () => (dispatch: any) => {
-  return dispatch({ type: "ACTION" });
-};
+const reducers = combineReducers({
+  contactReducer: ContactsReducer,
+});
 
 export const initialStore = createStore(
-  reducer,
+  reducers,
   initialState,
   applyMiddleware(thunkMiddleware)
 );
