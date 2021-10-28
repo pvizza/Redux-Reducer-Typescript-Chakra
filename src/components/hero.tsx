@@ -3,14 +3,14 @@ import { Form } from "./form";
 import { Contacts } from "./contacts";
 import { Person } from "../interfaces/Person";
 import { useState, useEffect } from "react";
-import { useSelector, TypedUseSelectorHook } from "react-redux";
-import { RootState } from "../interfaces/Root";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 export const Hero = () => {
   const [inputValue, setInputValue] = useState<Person[]>([]);
 
-  const receivesValue: TypedUseSelectorHook<RootState> = useSelector(
-    (store) => store.contactReducer.inputValue
+  const receivesValue = useSelector(
+    (store: RootState) => store.contactReducer.inputValue
   );
   const getTimeForId = (): number => new Date().getTime();
 
@@ -37,7 +37,8 @@ export const Hero = () => {
 };
 
 /* to-do: 
-  review redux typescript documentation and fix errors
   validation form hooks 
+  add branch for redux basic usagges
+  night mode
 
 */

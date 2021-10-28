@@ -1,5 +1,3 @@
-import { Person } from "../interfaces/Person";
-
 const initialState = {};
 type actionType = { type: string; payload: {} };
 

@@ -5,10 +5,6 @@ import { ContactsReducer } from "../reducers/ContactsReducer";
 
 const initialState = {};
 
-export const action = (inputValue) => (dispatch) => {
-  return dispatch({ type: "add", payload: inputValue });
-};
-
 const reducers = combineReducers({
   contactReducer: ContactsReducer,
 });
@@ -18,3 +14,5 @@ export const initialStore = createStore(
   initialState,
   applyMiddleware(thunkMiddleware)
 );
+
+export type RootState = ReturnType<typeof initialStore.getState>;

@@ -15,7 +15,7 @@ import {
 import { InfoIcon } from "@chakra-ui/icons";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { action } from "../store/store";
+import { action } from "../actions/action";
 
 // interface Props {
 //   callback: (data: any) => void;
