@@ -37,8 +37,6 @@ export const Hero = () => {
 };
 
 /* to-do: 
-  validation form hooks 
-  add branch for redux basic usagges
   night mode
 
 */

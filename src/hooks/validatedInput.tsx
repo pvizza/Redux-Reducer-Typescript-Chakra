@@ -1,16 +1,18 @@
-const validatedInput = (values: any) => {
+import { Person } from "../interfaces/Person";
+
+export const validatedInput = (values: Person) => {
   let errors = {
     name: "",
     last: "",
   };
 
   if (!values.name.trim()) {
-    errors.name = "name is required";
+    errors.name = "Name is required";
   }
 
   if (!values.last.trim()) {
-    errors.last = "lastname is required";
+    errors.last = "Last name is required";
   }
-};
 
-export default validatedInput;
+  return errors;
+};

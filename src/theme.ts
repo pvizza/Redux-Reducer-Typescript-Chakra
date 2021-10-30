@@ -12,5 +12,11 @@ const colors = {
     900: "#322659",
   },
 };
+const font = {
+  fonts: {
+    heading: "Open Sans",
+    body: "Roboto",
+  },
+};
 
-export const theme = extendTheme({ colors });
+export const theme = extendTheme({ font, colors });
